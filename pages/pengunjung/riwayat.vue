@@ -3,9 +3,9 @@
     <div class="text-center text-dark">
       <h3>Riwayat Kunjungan</h3>
     </div>
-    <div class="input-group rounded my-5">
-      <input type="search" class="form-control rounded" placeholder="Cari..." aria-label="Search"
-        aria-describedby="search-addon" /><img src="~/assets/img/search.png" class="img-search" alt="">
+    <div class="input-group flex-nowrap rounded my-5">
+      <input type="search" class="form-control" placeholder="Cari..." aria-label="Search" />
+      <span class="input-group-text"><i class="bi bi-search"></i></span> 
     </div>
     <div class="row my-5">
       <div class="col">
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <table class="table">
+    <table class="table border-light">
       <thead>
         <tr>
           <th>No</th>
@@ -49,18 +49,30 @@
 </template>
 
 <style scoped>
+.input-group-text {
+  background-color: #fff;
+  border-left: none !important;
+}
+.form-control {
+  border-right: none;
+}
+.container-fluid {
+  padding-bottom: 200px;
+  background-color: #E5F1FD;
+}
+
 .btn {
   margin-right: 20px;
   background-color: #394367;
 }
 
 h3 {
-  padding-top: 250px;
+  padding-top: 200px;
 }
 
-.img-search {
+/* .img-search {
   margin-top: 5px;
   width: 20px;
   height: 20px;
-}
+} */
 </style>

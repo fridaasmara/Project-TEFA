@@ -1,8 +1,7 @@
 <template>
-  <div class="container-fluid content">
-
-    <div class="text-center text-dark">
-      <h3>Selamat Datang</h3>
+  <div class="container-fluid pt-2">
+    <div class="wlc text-center text-dark">
+      <h3 >Selamat Datang</h3>
       <img src="../assets/icon/wand-magic-sparkles-solid (1).svg" alt="" class="icon">
     </div>
 
@@ -12,29 +11,18 @@
           aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
           aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="../assets/img/bg-carousel.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
-
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../assets/img/carousel2.jpg" class="d-block w-100" alt="...">
+          <img src="../assets/img/bg-carousel-2.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
-
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/img/carousel3.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Buku Adalah Gudangnya Ilmu</h5>
-
           </div>
         </div>
       </div>
@@ -78,6 +66,15 @@
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
 
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  background-color: #E5F1FD;
+}
+
+.wlc {
+  margin-top: 250px;
+}
 
 .carousel-item {
   font-family: "Judson", serif;
@@ -87,10 +84,6 @@
 
 .carousel-item h5 {
   margin-top: 20px;
-}
-
-.content {
-  margin-top: 150px;
 }
 
 nuxt-link {
@@ -116,9 +109,7 @@ nuxt-link {
 
 .icon {
   width: 20px;
+
 }
 
-h3 {
-  margin-top: 250px;
-}
 </style>

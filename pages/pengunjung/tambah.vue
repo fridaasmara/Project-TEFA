@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="form col-md-6 offset-md-3 mt-5">
+  <div class="container-fluid pt-2">
+    <div class="col-md-6 offset-md-3">
       <h2 class="text-center text-dark">Isi Catatan Kunjungan</h2>
       <form>
         <div class="mb-3">
@@ -55,19 +55,33 @@
             <option value="Pinjam">Meminjam buku</option>
             <option value="Kembalikan">Mengembalikan</option>
           </select>
+         </div>
+        <div class="text-center">
+          <nuxt-link to="../pengunjung/riwayat">
+            <button type="submit" class="btn btn-primary my-2 text-center mb-5">Kirim</button>
+          </nuxt-link>
         </div>
-        <nuxt-link to="../pengunjung/riwayat">
-          <button type="submit" class="btn btn-primary my-2 text-center">Kirim</button>
-        </nuxt-link>
       </form>
     </div>
   </div>
 </template>
 
 <style scoped>
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 200px;
+  background-color: #E5F1FD;
+}
+
 h2 {
   margin-top: 200px;
   margin-bottom: 100px;
+}
+
+form {
+  border-radius: 5px;
+  background-color: white;
 }
 
 input {
@@ -78,5 +92,13 @@ input {
 select {
   background-color: #E7F5F5;
   box-shadow: 1px 1px 10px #424242;
+}
+
+.btn {
+  background-color: #394367;
+}
+
+label {
+  font-size: 15px;
 }
 </style>

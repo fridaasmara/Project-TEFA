@@ -1,17 +1,17 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid pt-2">
     <div class="text-center text-dark">
       <h3>Cari Buku</h3>
     </div>
-    <div class="row align-item-center">
-      <div class="col">
-        <div class="input-group rounded my-5">
-          <input type="search" class="form-control rounded" placeholder="Cari buku" aria-label="Search"
-            aria-describedby="search-addon" /><img src="~/assets/img/search.png" class="img-search" alt="">
+    <div class="row mt-5 mb-3 d-flex justify-content-center">
+      <div class="col-md-8 mb-2">
+        <div class="input-group flex-nowrap rounded">
+          <input type="search" class="form-control" placeholder="Cari buku" aria-label="Search" aria-describedby="search-addon"/>
+          <span class="input-group-text"><i class="bi bi-search"></i></span> 
         </div>
       </div>
-      <div class="col-auto">
-        <select class="form-control form-select mb-2" id="exampleFormControlSelect1">
+      <div class="col-md-3">
+        <select class="form-control form-select" id="exampleFormControlSelect1">
           <option disable value=" ">Kategori</option>
           <option value="Bahasa">Bahasa</option>
           <option value="Kesusastraan">Kesusastraan</option>
@@ -38,40 +38,41 @@
       </div>
     </div>
 
-    <div class="row book">
-      <div class="col-lg-2">
+    <div class="row gy-5 my-3 cardbook">
+      <div class="col-sm-6 col-md-4 col-lg-2">
         <div class="card">
           <img src="~/assets/img/Aboycalledocean.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">A Boy Called Ocean</h5>
-            <a href="#" class="btn btn-primary my-2 center">Lihat Detail</a>
+            <a href="#" class="btn btn-primary my-2 center" @click="showModal">Lihat Detail </a> 
+            <detailbuku></detailbuku>
           </div>
         </div>
       </div>
-      <div class="col-lg-2">
+      <div class="col-sm-6 col-md-4 col-lg-2">
         <div class="card">
-          <img src="~/assets/img/Masteringbasicenglish.jpg" class="card-img-top" alt="...">
+          <img src="~/assets/img/mariposa1.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Mastering Basic English</h5>
-            <a href="#" class="btn btn-primary my-2 justify-content-center">Lihat Detail</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-2">
-        <div class="card">
-          <img src="~/assets/img/Offtherecord3.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Off The Record 3</h5>
+            <h5 class="card-title">Mariposa 2 (part 1)</h5>
             <a href="#" class="btn btn-primary my-2">Lihat Detail</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-2">
-        <div class="card mb-3">
-          <img src="~/assets/img/Loveforimperfectthings.jpg" class="card-img-top" alt="...">
+      <div class="col-sm-6 col-md-4 col-lg-2">
+        <div class="card">
+          <img src="~/assets/img/mariposa2.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Love for Imperfect Things</h5>
-            <a href="#" class="btn btn-primary my-3">Lihat Detail</a>
+            <h5 class="card-title">Mariposa 2 (part 2)</h5>
+            <a href="#" class="btn btn-primary my-2">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-2">
+        <div class="card">
+          <img src="~/assets/img/ppkn.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Pendidikan Pancasila SMK/MAK</h5>
+            <a href="#" class="btn btn-primary my-2">Lihat Detail</a>
           </div>
         </div>
       </div>
@@ -80,17 +81,49 @@
 </template>
 
 
+<script>
+import detailbuku from '../buku/detailbuku.vue'
+
+export default {
+  components: {
+    detailbuku
+  },
+  methods: {
+    showModal() {
+      let myModal = new bootstrap.Modal(document.getElementById('detailbukuModal'));
+      myModal.show();
+    }
+  }
+}
+</script>
+
+
 <style scoped>
+.input-group-text {
+  background-color: #fff;
+  border-left: none !important;
+}
+.form-control {
+  border-right: none;
+}
+
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  background-color: #E5F1FD;
+}
+
 h3 {
   margin-top: 250px;
 }
 
-input {
+/* input {
   margin-right: 20px;
-}
+} */
 
 .rekomen {
   font-size: 25px;
+  margin-left: 25px;
 }
 
 .btn {
@@ -98,9 +131,10 @@ input {
   background-color: #394367;
 }
 
-/* .book {
-  position: relative;
-} */
+.cardbook {
+  margin-left: 25px;
+  margin-right: 25px;
+}
 
 .card {
   width: 100%;
