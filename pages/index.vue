@@ -1,11 +1,11 @@
 <template>
-  <div class="container-fluid pt-2">
+  <div class="container-fluid pt-2 pb-5">
     <div class="wlc text-center text-dark">
-      <h3 >Selamat Datang</h3>
+      <h3>Selamat Datang</h3>
       <img src="../assets/icon/wand-magic-sparkles-solid (1).svg" alt="" class="icon">
     </div>
 
-    <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide mt-5 p-2" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
           aria-current="true" aria-label="Slide 1"></button>
@@ -14,7 +14,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../assets/img/bg-carousel.png" class="d-block w-100" alt="...">
+          <img src="../assets/img/bg-carousel-1.jpg" class="d-block w-100 img" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
           </div>
@@ -38,11 +38,11 @@
       </button>
     </div>
 
-    <div class="row my-5">
+    <div class="row mt-5 p-2">
       <div class="col-lg-6">
         <nuxt-link to="/pengunjung/tambah">
           <div class="card bg-pengunjung rounded-5 text-dark text-center mb-4">
-            <div class="card-body mt-5">
+            <div class="card-body">
               <h2>Pengunjung</h2>
             </div>
           </div>
@@ -51,9 +51,9 @@
 
 
       <div class="col-lg-6">
-        <nuxt-link to="/buku/utama">
+        <nuxt-link to="/buku/caribuku">
           <div class="card bg-buku rounded-5 text-dark text-center mb-4">
-            <div class="card-body mt-5">
+            <div class="card-body">
               <h2>Cari Buku</h2>
             </div>
           </div>
@@ -67,27 +67,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
 
 .container-fluid {
-  padding: 0;
-  margin: 0;
   background-color: #E5F1FD;
 }
 
 .wlc {
-  margin-top: 250px;
+  margin-top: 220px;
 }
 
 .carousel-item {
   font-family: "Judson", serif;
   font-weight: 400;
   font-style: italic;
+  height: 20em;
 }
 
 .carousel-item h5 {
   margin-top: 20px;
 }
 
-nuxt-link {
-  text-decoration: none !important;
+.card-body h2 {
+  margin-top: 25px;
+  padding-top: 50px;
 }
 
 .card {
@@ -109,7 +109,31 @@ nuxt-link {
 
 .icon {
   width: 20px;
-
 }
+
+@media only screen and (max-width: 600px) {
+  .card, .carousel-item {
+    height: 9em;
+  }
+  .card-body h2{
+    font-size: large;
+    margin-top: 0;
+    text-decoration: none;
+  }
+  .img {
+    height: 100%;
+    background-size: cover;
+  }
+  .carousel-item h5 {
+    margin-top: 2px;
+  } 
+}
+
+@media only screen and (min-width: 600px) and (max-width: 890px) {
+  .carousel-item {
+    height: 15em;
+  }
+}
+
 
 </style>

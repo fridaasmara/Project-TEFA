@@ -1,9 +1,16 @@
 <template>
-  <div class="container-fluid pt-2">
+  <div class="container-fluid pt-2 pb-5">
     <div class="col-md-6 offset-md-3">
       <h2 class="text-center text-dark">Isi Catatan Kunjungan</h2>
+      <div class="row">
+        <div class="col text-end">
+          <nuxt-link to="/">
+            <button class="btn btn-primary mb-5">Kembali</button>
+          </nuxt-link>
+        </div>
+      </div>
       <form>
-        <div class="mb-3">
+        <div class="py-3">
           <label for="exampleFormControlInput1">Nama</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" />
         </div>
@@ -58,7 +65,7 @@
          </div>
         <div class="text-center">
           <nuxt-link to="../pengunjung/riwayat">
-            <button type="submit" class="btn btn-primary my-2 text-center mb-5">Kirim</button>
+            <button type="submit" class="btn btn-primary my-2 text-center ">Kirim</button>
           </nuxt-link>
         </div>
       </form>
@@ -68,20 +75,20 @@
 
 <style scoped>
 .container-fluid {
-  padding: 0;
-  margin: 0;
-  padding-bottom: 200px;
+  padding-bottom: 10em;
   background-color: #E5F1FD;
 }
 
 h2 {
-  margin-top: 200px;
-  margin-bottom: 100px;
+  margin-top: 225px;
+  margin-bottom: 2em;
 }
 
 form {
-  border-radius: 5px;
+  border-radius: 2.5em;
   background-color: white;
+  padding: 2em;
+
 }
 
 input {
@@ -100,5 +107,15 @@ select {
 
 label {
   font-size: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    font-size: large;
+  }
+  .btn {
+    font-size: 1.5vh;
+    margin-right: 2em;
+  } 
 }
 </style>
