@@ -8,9 +8,10 @@ export default defineNuxtConfig({
   app: {
     head:{
       script: [{
-        src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2/dist/js/bootstrap.bundle.min.js"
       }]
     }
   },
-
+  modules: ["@nuxtjs/supabase"],
+  supabase: { redirect: false },
 })

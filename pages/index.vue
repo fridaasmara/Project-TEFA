@@ -1,8 +1,7 @@
 <template>
   <div class="container-fluid pt-2 pb-5">
     <div class="wlc text-center text-dark">
-      <h3>Selamat Datang</h3>
-      <img src="../assets/icon/wand-magic-sparkles-solid (1).svg" alt="" class="icon">
+      <h3>Selamat Datang</h3> <i class="bi bi-magic fs-3"></i>
     </div>
 
     <div id="carouselExampleCaptions" class="carousel slide mt-5 p-2" data-bs-ride="carousel">
@@ -40,7 +39,7 @@
 
     <div class="row mt-5 p-2">
       <div class="col-lg-6">
-        <nuxt-link to="/pengunjung/tambah">
+        <nuxt-link to="/pengunjung/tambah" style="text-decoration: none;">
           <div class="card bg-pengunjung rounded-5 text-dark text-center mb-4">
             <div class="card-body">
               <h2>Pengunjung</h2>
@@ -51,7 +50,7 @@
 
 
       <div class="col-lg-6">
-        <nuxt-link to="/buku/caribuku">
+        <nuxt-link to="/buku/caribuku" style="text-decoration: none;">
           <div class="card bg-buku rounded-5 text-dark text-center mb-4">
             <div class="card-body">
               <h2>Cari Buku</h2>
@@ -60,15 +59,58 @@
         </nuxt-link>
       </div>
     </div>
+
+    <h1 class="mt-5 fw-semibold mx-5">Statistik</h1>
+
+    <div class="row mt-2 p-5 statistik justify-content-center">
+      <div class="col-lg-5">
+          <div class="card rounded-4 text-dark text-center mb-4 bg-secondary bg-opacity-25">
+            <div class="card-body">
+              <h2>{{ jmlPengunjung }} Pengunjung</h2>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-lg-5">
+          <div class="card rounded-4 text-dark text-center mb-4 bg-info bg-opacity-25">
+            <div class="card-body">
+              <h2>{{ jmlBuku }} Buku</h2>
+            </div>
+          </div>
+      </div>
+    </div>
+    
   </div>
 </template>
 
+<script setup>
+const supabase = useSupabaseClient()
+const jmlBuku = ref()
+const jmlPengunjung = ref ()
+
+const getjmlPengunjung = async () => {
+  const { data, count } = await supabase
+    .from('pengunjung')
+    .select('*', { count: 'exact' })
+  if(data) jmlPengunjung.value = count
+}
+
+const getjmlBuku = async () => {
+  const { data, count } = await supabase
+    .from('buku')
+    .select('*', { count: 'exact' })
+  if(data) jmlBuku.value = count
+}
+
+onMounted(() => {
+  getjmlPengunjung()
+  getjmlBuku()
+}
+)
+</script>
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
-
-.container-fluid {
-  background-color: #E5F1FD;
-}
 
 .wlc {
   margin-top: 220px;
@@ -111,6 +153,7 @@
   width: 20px;
 }
 
+
 @media only screen and (max-width: 600px) {
   .card, .carousel-item {
     height: 9em;
@@ -118,7 +161,7 @@
   .card-body h2{
     font-size: large;
     margin-top: 0;
-    text-decoration: none;
+    text-decoration: black;
   }
   .img {
     height: 100%;
@@ -127,6 +170,13 @@
   .carousel-item h5 {
     margin-top: 2px;
   } 
+  .statistik .card {
+    height: 7rem;
+  }
+
+  .statistik .card h2 {
+    padding-top: 1.5rem;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 890px) {
