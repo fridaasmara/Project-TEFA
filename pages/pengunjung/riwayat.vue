@@ -49,7 +49,7 @@
                     <td>{{ visitor.waktu }}</td>
                     <td>{{ visitor.nama }}</td>
                     <td>{{ visitor.keanggotaan.nama }}</td>
-                    <td>{{ visitor.tingkat }}, {{ visitor.jurusan }}, {{ visitor.kelas }}</td>
+                    <td>{{ visitor.tingkat }} {{ visitor.jurusan }} {{ visitor.kelas }}</td>
                     <td>{{ visitor.keperluan.nama }}</td>
                   </tr>
                 </tbody>
