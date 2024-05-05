@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-md">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><strong>Penulis :</strong> {{ book.penulis }}s</li>
+                                    <li class="list-group-item"><strong>Penulis :</strong> {{ book.penulis }}</li>
                                     <li class="list-group-item"><strong>Penerbit :</strong> {{ book.penerbit }}</li>
                                     <li class="list-group-item"><strong>Tahun Terbit :</strong> {{ book.tahun_terbit }}</li>
                                     <li class="list-group-item"><strong>Sinopsis :</strong> {{ book.sinopsis }}</li>
