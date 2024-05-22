@@ -20,11 +20,12 @@
               <form @submit.prevent="kirimData" class="p-4">
                 <div class="py-3">
                   <label for="nama">Nama</label>
-                  <input v-model="form.nama" type="text" class="form-control" id="nama"/>
+                  <input v-model="form.nama" type="text" class="form-control" id="nama" />
                 </div>
                 <div class="form-group py-3">
                   <label for="keanggotaan">Keanggotaan</label>
-                  <select @change="cekKeanggotaan" v-model="form.keanggotaan" class="form-control form-select" id="keanggotaan">
+                  <select @change="cekKeanggotaan" v-model="form.keanggotaan" class="form-control form-select"
+                    id="keanggotaan">
                     <option v-for="(member, i) in members" :key="i" :value="member.id">{{ member.nama }}</option>
                   </select>
                 </div>
@@ -80,11 +81,11 @@
 
 
 <script setup>
-const supabase = useSupabaseClient()
+useHead({ title: "Perpus Digital - Kunjungan" })
 
+const supabase = useSupabaseClient()
 const members = ref([])
 const objectives = ref([])
-
 const form = ref({
   nama: "",
   keanggotaan: "",
@@ -96,22 +97,22 @@ const form = ref({
 
 const kirimData = async () => {
   const { error } = await supabase.from('pengunjung').insert([form.value])
-  if( !error ) navigateTo('/pengunjung/riwayat')
+  if (!error) navigateTo('/pengunjung/riwayat')
   console.log(error)
 }
 
 const getKeanggotaan = async () => {
   const { data, error } = await supabase.from('keanggotaan').select('*')
-  if(data) members.value = data
+  if (data) members.value = data
 }
 
 const getKeperluan = async () => {
   const { data, error } = await supabase.from('keperluan').select('*')
-  if(data) objectives.value = data
+  if (data) objectives.value = data
 }
 
 const cekKeanggotaan = e => {
-  if(e.target.value != '2') {
+  if (e.target.value != '2') {
     form.value.tingkat = ""
     form.value.jurusan = ""
     form.value.kelas = ""
@@ -127,6 +128,12 @@ onMounted(() => {
 
 
 <style scoped>
+h2,
+form,
+.btn {
+  font-family: "Poppins", sans-serif;
+}
+
 .container-fluid {
   padding-bottom: 10em;
 }
@@ -163,9 +170,11 @@ label {
   h2 {
     font-size: large;
   }
+
   .text-end {
     margin-right: 1rem;
   }
+
   .btn {
     margin-right: 1rem;
     font-size: 1.5vh;

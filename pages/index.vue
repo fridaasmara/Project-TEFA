@@ -64,42 +64,42 @@
 
     <div class="row mt-2 p-5 statistik justify-content-center">
       <div class="col-lg-5">
-          <div class="card rounded-4 text-dark text-center mb-4 bg-secondary bg-opacity-25">
-            <div class="card-body">
-              <h2>{{ jmlPengunjung }} Pengunjung</h2>
-            </div>
+        <div class="card rounded-4 text-dark text-center mb-4 bg-secondary bg-opacity-25">
+          <div class="card-body">
+            <h2>{{ jmlPengunjung }} Pengunjung</h2>
           </div>
+        </div>
       </div>
 
       <div class="col-lg-5">
-          <div class="card rounded-4 text-dark text-center mb-4 bg-info bg-opacity-25">
-            <div class="card-body">
-              <h2>{{ jmlBuku }} Buku</h2>
-            </div>
+        <div class="card rounded-4 text-dark text-center mb-4 bg-info bg-opacity-25">
+          <div class="card-body">
+            <h2>{{ jmlBuku }} Buku</h2>
           </div>
+        </div>
       </div>
     </div>
-    
+
   </div>
 </template>
 
 <script setup>
 const supabase = useSupabaseClient()
 const jmlBuku = ref()
-const jmlPengunjung = ref ()
+const jmlPengunjung = ref()
 
 const getjmlPengunjung = async () => {
   const { data, count } = await supabase
     .from('pengunjung')
     .select('*', { count: 'exact' })
-  if(data) jmlPengunjung.value = count
+  if (data) jmlPengunjung.value = count
 }
 
 const getjmlBuku = async () => {
   const { data, count } = await supabase
     .from('buku')
     .select('*', { count: 'exact' })
-  if(data) jmlBuku.value = count
+  if (data) jmlBuku.value = count
 }
 
 onMounted(() => {
@@ -111,6 +111,12 @@ onMounted(() => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
+
+h3,
+h2,
+h1 {
+  font-family: "Poppins", sans-serif;
+}
 
 .wlc {
   margin-top: 220px;
@@ -155,21 +161,27 @@ onMounted(() => {
 
 
 @media only screen and (max-width: 600px) {
-  .card, .carousel-item {
+
+  .card,
+  .carousel-item {
     height: 9em;
   }
-  .card-body h2{
+
+  .card-body h2 {
     font-size: large;
     margin-top: 0;
     text-decoration: black;
   }
+
   .img {
     height: 100%;
     background-size: cover;
   }
+
   .carousel-item h5 {
     margin-top: 2px;
-  } 
+  }
+
   .statistik .card {
     height: 7rem;
   }
@@ -184,6 +196,4 @@ onMounted(() => {
     height: 15em;
   }
 }
-
-
 </style>

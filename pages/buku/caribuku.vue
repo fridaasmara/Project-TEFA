@@ -6,21 +6,23 @@
     <div class="row mt-5 mb-3 p-2 d-flex justify-content-center">
       <div class="col-md-8 mb-2">
         <form @submit.prevent="getBooks" class="input-group flex-nowrap rounded">
-          <input v-model="keyword" type="search" class="form-control" placeholder="Cari buku" aria-label="Search" aria-describedby="search-addon"/>
-          <span class="input-group-text"><i class="bi bi-search"></i></span> 
+          <input v-model="keyword" type="search" class="form-control" placeholder="Cari buku" aria-label="Search"
+            aria-describedby="search-addon" />
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
         </form>
       </div>
       <div class="col-md-3">
         <select v-model="keyword" class="form-control form-select" id="keanggotaan">
           <option value="">Kategori</option>
-          <option v-for="(kategori, i) in kategoris" :key="kategori.id" :value="kategori.nama">{{ kategori.nama }}</option>
+          <option v-for="(kategori, i) in kategoris" :key="kategori.id" :value="kategori.nama">{{ kategori.nama }}
+          </option>
         </select>
       </div>
     </div>
     <div class="row mt-4 p-3">
       <div class="col">
         <div class="rekomen text-dark">Rekomendasi</div>
-        <h5 class="mt-3 text-dark disabled p-3">Menampilkan : {{ books.length }} buku</h5>
+        <p class="mt-3 text-muted p-3">Menampilkan : {{ bookFiltered.length }} dari {{ jmlBuku }} buku</p>
       </div>
       <div class="col text-end">
         <nuxt-link to="/">
@@ -34,15 +36,16 @@
     </div>
 
     <div class="row gy-5 my-3 cardbook p-4 bg-white rounded shadow">
-      <div v-for="(book, i) in bookFiltered" :key="i"  class="col-sm-6 col-md-4 col-lg-2">
+      <div v-for="(book, i) in bookFiltered" :key="i" class="col-sm-6 col-md-4 col-lg-2">
         <div class="card">
           <img :src="book.cover" class="card-img-top" alt="img-cover">
           <div class="card-body">
             <div class="text-center">
-              <button class="btn btn-primary my-2 center" data-bs-toggle="modal" :data-bs-target="`#buku-${book.id}`">Lihat Detail </button>
+              <button class="btn btn-primary my-2 center" data-bs-toggle="modal"
+                :data-bs-target="`#buku-${book.id}`">Lihat Detail </button>
             </div>
 
-            <div class="modal fade" :id="`buku-${book.id}`">                                                                           
+            <div class="modal fade" :id="`buku-${book.id}`">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content rounded-4">
                   <div class="modal-header  text-center">
@@ -50,27 +53,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <img :src="book.cover" class="img-fluid">
-                            </div>
-                            <div class="col-md">
-                                <ul class="list-group">
-                                    <li class="list-group-item"><strong>Penulis :</strong> {{ book.penulis }}</li>
-                                    <li class="list-group-item"><strong>Penerbit :</strong> {{ book.penerbit }}</li>
-                                    <li class="list-group-item"><strong>Tahun Terbit :</strong> {{ book.tahun_terbit }}</li>
-                                    <li class="list-group-item"><strong>Sinopsis :</strong> {{ book.sinopsis }}</li>
-                                    <li class="list-group-item"><strong>Kategori :</strong> {{ book.kategori?.nama }}</li>
-                                    <li class="list-group-item"><strong>Rak :</strong> {{ book.rak }}</li>
-                                </ul>
-                            </div>
-                          </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <img :src="book.cover" class="img-fluid">
+                      </div>
+                      <div class="col-md">
+                        <ul class="list-group">
+                          <li class="list-group-item"><strong>Penulis :</strong> {{ book.penulis }}</li>
+                          <li class="list-group-item"><strong>Penerbit :</strong> {{ book.penerbit }}</li>
+                          <li class="list-group-item"><strong>Tahun Terbit :</strong> {{ book.tahun_terbit }}</li>
+                          <li class="list-group-item"><strong>Sinopsis :</strong> {{ book.sinopsis }}</li>
+                          <li class="list-group-item"><strong>Kategori :</strong> {{ book.kategori?.nama }}</li>
+                          <li class="list-group-item"><strong>Rak :</strong> {{ book.rak }}</li>
+                        </ul>
+                      </div>
                     </div>
+                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn text-light" data-bs-dismiss="modal">Tutup</button>
                   </div>
                 </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
@@ -81,16 +84,18 @@
 
 
 <script setup>
-const supabase = useSupabaseClient()
-const kategoris = ref ([])
-const books = ref([])
+useHead({ title: "Perpus Digital - Buku" })
 
+const supabase = useSupabaseClient()
+const kategoris = ref([])
+const books = ref([])
+const jmlBuku = ref(0)
 const keyword = ref('')
 
 const getBooks = async () => {
   const { data, error } = await supabase.from('buku').select(`*, kategori(*)`)
-  .ilike('judul', `%${keyword.value}`)
-  if(data) {
+    .ilike('judul', `%${keyword.value}%`)
+  if (data) {
     books.value = data
     data.forEach(book => {
       const { data } = supabase.storage.from('coverbuku').getPublicUrl(book.cover)
@@ -104,21 +109,29 @@ const getBooks = async () => {
 
 const getKategori = async () => {
   const { data, error } = await supabase.from('kategori_buku').select()
-  if(data) kategoris.value = data
+  if (data) kategoris.value = data
 }
 
-const bookFiltered = computed (() => {
+const bookFiltered = computed(() => {
   return books.value.filter((b) => {
     return (
-      b.judul?.toLowerCase().includes(keyword.value.toLowerCase()) || 
+      b.judul?.toLowerCase().includes(keyword.value.toLowerCase()) ||
       b.kategori?.nama.toLowerCase().includes(keyword.value.toLowerCase())
     )
   })
 })
 
+const getjmlBuku = async () => {
+  const { data, count } = await supabase
+    .from('buku')
+    .select('*', { count: 'exact' })
+  if (data) jmlBuku.value = count
+}
+
 onMounted(() => {
   getBooks()
   getKategori()
+  getjmlBuku()
 })
 
 
@@ -126,10 +139,24 @@ onMounted(() => {
 
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h3,
+input,
+select,
+option,
+.rekomen,
+.text-muted,
+.btn,
+.modal {
+  font-family: "Poppins", sans-serif;
+}
+
 .input-group-text {
   background-color: #fff;
   border-left: none !important;
 }
+
 .form-control {
   border-right: none;
 }
@@ -176,29 +203,35 @@ h3 {
   h3 {
     font-size: large;
   }
+
   .rekomen {
     font-size: large;
   }
+
   .btn {
     font-size: 1.3vh;
   }
+
   .first {
     margin-left: 1rem;
   }
+
   .modal {
-      padding: 2em;
-      font-size: small;
-    }
+    padding: 2em;
+    font-size: small;
+  }
+
   .modal-title {
     font-size: small;
   }
+
   .card {
     width: 100%;
     height: 27rem;
   }
+
   h5 {
     font-size: 1rem;
   }
 }
-
 </style>
