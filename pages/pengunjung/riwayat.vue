@@ -1,66 +1,162 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid pb-5">
     <div class="text-center text-dark">
       <h3>Riwayat Kunjungan</h3>
     </div>
-    <div class="input-group rounded my-5">
-      <input type="search" class="form-control rounded" placeholder="Cari..." aria-label="Search"
-        aria-describedby="search-addon" /><img src="~/assets/img/search.png" class="img-search" alt="">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <form @submit.prevent="getPengunjung" class="input-group flex-nowrap rounded my-5">
+          <input v-model="keyword" type="search" class="form-control" placeholder="Cari..." aria-label="Search" />
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+        </form>
+      </div>
     </div>
-    <div class="row my-5">
+    <div class="row my-3 mx-5">
       <div class="col">
-        <div class="text-muted">Saat ini : 1 dari 1 kunjungan</div>
+        <p class="text-muted">Menampilkan : {{ visitors.length }} dari {{ jmlPengunjung }} pengunjung</p>
       </div>
       <div class="col text-end">
         <nuxt-link to="../pengunjung/tambah">
-          <button class="btn btn-primary">Kembali</button>
+          <button class="btn btn-primary first"><i class="bi bi-house-door-fill"></i></button>
         </nuxt-link>
-        <nuxt-link to="../buku/utama"><button class="btn btn-primary">Cari buku</button>
+        <nuxt-link to="../buku/caribuku">
+          <button class="btn btn-primary">Cari buku</button>
         </nuxt-link>
-
       </div>
     </div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal</th>
-          <th>Waktu</th>
-          <th>Nama</th>
-          <th>Keanggotaan</th>
-          <th>Kelas</th>
-          <th>Keperluan</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>7 Maret 2024</td>
-          <td>11.10.00</td>
-          <td>Frida </td>
-          <td>Siswa</td>
-          <td>XI PPLG 3</td>
-          <td>Membaca</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row p-3">
+      <div class="col">
+        <div class="card shadow rounded p-4">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Waktu</th>
+                    <th>Nama</th>
+                    <th>Keanggotaan</th>
+                    <th>Kelas</th>
+                    <th>Keperluan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(visitor, i) in pengunjungFiltered" :key="i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ visitor.tanggal }}</td>
+                    <td>{{ visitor.waktu.split('.')[0] }}</td>
+                    <td>{{ visitor.nama }}</td>
+                    <td>{{ visitor.keanggotaan.nama }}</td>
+                    <td>{{ visitor.tingkat }} {{ visitor.jurusan }} {{ visitor.kelas }}</td>
+                    <td>{{ visitor.keperluan.nama }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
+
+<script setup>
+useHead({ title: "Perpus Digital - Kunjungan" })
+
+const supabase = useSupabaseClient()
+const visitors = ref([])
+const jmlPengunjung = ref(0)
+const keyword = ref('')
+
+const getPengunjung = async () => {
+  const { data, error } = await supabase
+    .from('pengunjung')
+    .select(`*, keanggotaan(*), keperluan(*)`)
+    .order('id', { ascending: false })
+    .ilike('nama', `%${keyword.value}%`)
+  if (data) visitors.value = data
+}
+
+const getjmlPengunjung = async () => {
+  const { data, count } = await supabase
+    .from('pengunjung')
+    .select('*', { count: 'exact' })
+  if (data) jmlPengunjung.value = count
+}
+
+const pengunjungFiltered = computed(() => {
+  return visitors.value.filter((b) => {
+    return (
+      b.nama?.toLowerCase().includes(keyword.value.toLowerCase())
+    )
+  })
+})
+
+onMounted(() => {
+  getPengunjung()
+  getjmlPengunjung()
+})
+</script>
+
+
 <style scoped>
+h3,
+input,
+table,
+.text-muted,
 .btn {
-  margin-right: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.input-group-text {
+  background-color: #fff;
+  border-left: none !important;
+  margin-right: 25px;
+}
+
+.form-control {
+  border-right: none;
+  margin-left: 25px;
+}
+
+.btn {
+  margin-right: 2rem;
   background-color: #394367;
 }
 
 h3 {
-  padding-top: 250px;
+  padding-top: 225px;
 }
 
-.img-search {
-  margin-top: 5px;
-  width: 20px;
-  height: 20px;
+.first {
+  margin-right: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  h3 {
+    font-size: large;
+  }
+
+  .btn {
+    font-size: 1.3vh;
+    margin-right: 0.7em;
+  }
+
+  .first {
+    margin-bottom: 5px;
+    margin-left: 20px;
+  }
+
+  .input-group-text {
+    margin-right: 1.5em;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
 </style>

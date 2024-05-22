@@ -26,7 +26,7 @@
       </div>
       <div class="col text-end">
         <nuxt-link to="/">
-          <button class="btn btn-primary first">Kembali</button>
+          <button class="btn btn-primary first"><i class="bi bi-house-door-fill"></i></button>
         </nuxt-link>
 
         <nuxt-link to="../pengunjung/tambah">
@@ -197,6 +197,14 @@ h3 {
   margin-top: 5px;
   width: 20px;
   height: 20px;
+}
+
+.first {
+  margin-right: 2rem;
+}
+
+.text-end {
+  margin-right: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
