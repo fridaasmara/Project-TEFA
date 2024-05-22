@@ -1,12 +1,6 @@
 <template>
-  <div class="container-fluid p-0">
+  <div class="container-fluid">
     <Header />
     <slot />
   </div>
 </template>
-
-<style>
-body {
-  background-color: #E5F1FD;
-}
-</style>

@@ -1,27 +1,40 @@
 <template>
-  <div class="container-fluid pt-2 pb-5">
-    <div class="wlc text-center text-dark">
-      <h3>Selamat Datang</h3> <i class="bi bi-magic fs-3"></i>
+  <div class="container-fluid content">
+
+    <div class="text-center text-dark">
+      <h3>Selamat Datang</h3>
+      <img src="../assets/icon/wand-magic-sparkles-solid (1).svg" alt="" class="icon">
     </div>
 
-    <div id="carouselExampleCaptions" class="carousel slide mt-5 p-2" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
           aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
           aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../assets/img/bg-carousel-1.jpg" class="d-block w-100 img" alt="...">
+          <img src="../assets/img/bg-carousel.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
+
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../assets/img/bg-carousel-2.jpg" class="d-block w-100" alt="...">
+          <img src="../assets/img/carousel2.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
+
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/img/carousel3.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Buku Adalah Gudangnya Ilmu</h5>
+
           </div>
         </div>
       </div>
@@ -37,11 +50,11 @@
       </button>
     </div>
 
-    <div class="row mt-5 p-2">
+    <div class="row my-5">
       <div class="col-lg-6">
-        <nuxt-link to="/pengunjung/tambah" style="text-decoration: none;">
+        <nuxt-link to="/pengunjung/tambah">
           <div class="card bg-pengunjung rounded-5 text-dark text-center mb-4">
-            <div class="card-body">
+            <div class="card-body mt-5">
               <h2>Pengunjung</h2>
             </div>
           </div>
@@ -50,92 +63,38 @@
 
 
       <div class="col-lg-6">
-        <nuxt-link to="/buku/caribuku" style="text-decoration: none;">
+        <nuxt-link to="/buku/utama">
           <div class="card bg-buku rounded-5 text-dark text-center mb-4">
-            <div class="card-body">
+            <div class="card-body mt-5">
               <h2>Cari Buku</h2>
             </div>
           </div>
         </nuxt-link>
       </div>
     </div>
-
-    <h1 class="mt-5 fw-semibold mx-5">Statistik</h1>
-
-    <div class="row mt-2 p-5 statistik justify-content-center">
-      <div class="col-lg-5">
-        <div class="card rounded-4 text-dark text-center mb-4 bg-secondary bg-opacity-25">
-          <div class="card-body">
-            <h2>{{ jmlPengunjung }} Pengunjung</h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-5">
-        <div class="card rounded-4 text-dark text-center mb-4 bg-info bg-opacity-25">
-          <div class="card-body">
-            <h2>{{ jmlBuku }} Buku</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </template>
-
-<script setup>
-const supabase = useSupabaseClient()
-const jmlBuku = ref()
-const jmlPengunjung = ref()
-
-const getjmlPengunjung = async () => {
-  const { data, count } = await supabase
-    .from('pengunjung')
-    .select('*', { count: 'exact' })
-  if (data) jmlPengunjung.value = count
-}
-
-const getjmlBuku = async () => {
-  const { data, count } = await supabase
-    .from('buku')
-    .select('*', { count: 'exact' })
-  if (data) jmlBuku.value = count
-}
-
-onMounted(() => {
-  getjmlPengunjung()
-  getjmlBuku()
-}
-)
-</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
 
-h3,
-h2,
-h1 {
-  font-family: "Poppins", sans-serif;
-}
-
-.wlc {
-  margin-top: 220px;
-}
 
 .carousel-item {
   font-family: "Judson", serif;
   font-weight: 400;
   font-style: italic;
-  height: 20em;
 }
 
 .carousel-item h5 {
   margin-top: 20px;
 }
 
-.card-body h2 {
-  margin-top: 25px;
-  padding-top: 50px;
+.content {
+  margin-top: 150px;
+}
+
+nuxt-link {
+  text-decoration: none !important;
 }
 
 .card {
@@ -159,41 +118,7 @@ h1 {
   width: 20px;
 }
 
-
-@media only screen and (max-width: 600px) {
-
-  .card,
-  .carousel-item {
-    height: 9em;
-  }
-
-  .card-body h2 {
-    font-size: large;
-    margin-top: 0;
-    text-decoration: black;
-  }
-
-  .img {
-    height: 100%;
-    background-size: cover;
-  }
-
-  .carousel-item h5 {
-    margin-top: 2px;
-  }
-
-  .statistik .card {
-    height: 7rem;
-  }
-
-  .statistik .card h2 {
-    padding-top: 1.5rem;
-  }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 890px) {
-  .carousel-item {
-    height: 15em;
-  }
+h3 {
+  margin-top: 250px;
 }
 </style>
