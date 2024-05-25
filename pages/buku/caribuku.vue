@@ -48,7 +48,7 @@
             <div class="modal fade" :id="`buku-${book.id}`">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content rounded-4">
-                  <div class="modal-header  text-center">
+                  <div class="modal-header">
                     <h4 class="modal-title fw-bold" id="detailbukuModalLabel">{{ book.judul }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
@@ -153,7 +153,7 @@ option,
 }
 
 .input-group-text {
-  background-color: #fff;
+  background-color: #fffF;
   border-left: none !important;
 }
 
@@ -182,7 +182,7 @@ h3 {
 
 .card {
   width: 100%;
-  height: 24rem;
+  height: 25rem;
   padding: 0;
 }
 
@@ -218,10 +218,12 @@ h3 {
 
   .btn {
     font-size: 1.3vh;
+    margin-right: 0.7em;
   }
 
   .first {
-    margin-left: 1rem;
+    margin-bottom: 5px;
+    margin-left: 20px;
   }
 
   .modal {
@@ -240,6 +242,12 @@ h3 {
 
   h5 {
     font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 884px) and (max-width: 1280px) {
+  .card {
+    height: 22rem;
   }
 }
 </style>

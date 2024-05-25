@@ -6,17 +6,17 @@
     <div class="row justify-content-center">
       <div class="col-10">
         <form @submit.prevent="getPengunjung" class="input-group flex-nowrap rounded my-5">
-          <input v-model="keyword" type="search" class="form-control" placeholder="Cari..." aria-label="Search" />
+          <input v-model="keyword" type="search" class="form-control" placeholder="Cari nama pengunjung" aria-label="Search" />
           <span class="input-group-text"><i class="bi bi-search"></i></span>
         </form>
       </div>
     </div>
     <div class="row my-3 mx-5">
       <div class="col">
-        <p class="text-muted">Menampilkan : {{ visitors.length }} dari {{ jmlPengunjung }} pengunjung</p>
+        <p class="text-muted">Menampilkan : {{ pengunjungFiltered.length }} dari {{ jmlPengunjung }} pengunjung</p>
       </div>
       <div class="col text-end">
-        <nuxt-link to="../pengunjung/tambah">
+        <nuxt-link to="/">
           <button class="btn btn-primary first"><i class="bi bi-house-door-fill"></i></button>
         </nuxt-link>
         <nuxt-link to="../buku/caribuku">
