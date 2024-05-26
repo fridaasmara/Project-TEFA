@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
       <div class="col-10">
         <form @submit.prevent="getPengunjung" class="input-group flex-nowrap rounded my-5">
-          <input v-model="keyword" type="search" class="form-control" placeholder="Cari nama pengunjung" aria-label="Search" />
+          <input v-model="keyword" type="search" class="form-control" placeholder="Cari" aria-label="Search" />
           <span class="input-group-text"><i class="bi bi-search"></i></span>
         </form>
       </div>
@@ -91,7 +91,8 @@ const getjmlPengunjung = async () => {
 const pengunjungFiltered = computed(() => {
   return visitors.value.filter((b) => {
     return (
-      b.nama?.toLowerCase().includes(keyword.value.toLowerCase())
+      b.nama?.toLowerCase().includes(keyword.value.toLowerCase()) ||
+      b.keanggotaan?.nama.toLowerCase().includes(keyword.value.toLowerCase())
     )
   })
 })
