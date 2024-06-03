@@ -34,7 +34,7 @@
                   <div class="row">
                     <div class="col-md-4">
                       <select v-model="form.tingkat" class="form-control form-select mb-2" id="kelaslengkap">
-                        <option disable value=" ">Tingkat</option>
+                        <option disabled value="">Tingkat</option>
                         <option value="X">X</option>
                         <option value="XI">XI</option>
                         <option value="XII">XII</option>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-4">
                       <select v-model="form.jurusan" class="form-control form-select mb-2" id="kelaslengkap2">
-                        <option disable value=" ">Jurusan</option>
+                        <option disabled value="">Jurusan</option>
                         <option value="PPLG">PPLG</option>
                         <option value="TJKT">TJKT</option>
                         <option value="TBSM">TBSM</option>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-4">
                       <select v-model="form.kelas" class="form-control form-select mb-2" id="kelaslengkap3">
-                        <option disable value=" ">Kelas</option>
+                        <option disabled value="">Kelas</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

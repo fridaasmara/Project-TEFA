@@ -36,8 +36,8 @@
     </div>
 
     <div class="row gy-5 my-3 cardbook p-4 bg-white rounded shadow">
-      <div v-for="(book, i) in bookFiltered" :key="i" class="col-sm-6 col-md-4 col-lg-2">
-        <div class="card">
+      <div v-for="(book, i) in bookFiltered" :key="i" class="col-sm-6 col-md-4 col-lg-2 d-flex">
+        <div class="card flex-fill">
           <img :src="book.cover" class="card-img-top" alt="img-cover">
           <div class="card-body">
             <div class="text-center">
@@ -182,7 +182,6 @@ h3 {
 
 .card {
   width: 100%;
-  height: 25rem;
   padding: 0;
 }
 

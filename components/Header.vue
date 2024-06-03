@@ -1,5 +1,5 @@
 <template>
-  <div class="row p-2 bg-primary text-white justify-content-center fixed-top">
+  <div class="row py-2 bg-primary text-white justify-content-center fixed-top">
     <div class="col-lg-1">
       <img src="~/assets/img/LOGO-SMK4.png" class="logo" alt="logo SMKN 4">
     </div>
