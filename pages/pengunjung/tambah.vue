@@ -4,12 +4,12 @@
       <h2 class="text-center text-dark">Isi Catatan Kunjungan</h2>
       <div class="row">
         <div class="col text-end mb-5">
-          <nuxt-link to="/">
-            <button class="btn btn-primary first"><i class="bi bi-house-door-fill"></i></button>
+          <nuxt-link to="/" class="btn btn-primary first">
+            <i class="bi bi-house-door-fill"></i>
           </nuxt-link>
 
-          <nuxt-link to="../pengunjung/riwayat">
-            <button class="btn btn-primary">Riwayat</button>
+          <nuxt-link to="../pengunjung/riwayat" class="btn btn-primary">
+            Riwayat
           </nuxt-link>
         </div>
       </div>

@@ -13,13 +13,13 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../assets/img/bg-carousel-1.jpg" class="d-block w-100 img" alt="...">
+          <img src="../assets/img/bg-carousel-1.webp" class="d-block w-100 img" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../assets/img/bg-carousel-2.jpg" class="d-block w-100" alt="...">
+          <img src="../assets/img/bg-carousel-2.webp" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Buku Adalah Gudangnya Ilmu</h5>
           </div>
@@ -144,14 +144,14 @@ h1 {
 }
 
 .card.bg-pengunjung {
-  background-image: url('../assets/img/bg-home-kunjungan.png');
+  background-image: url('../assets/img/bg-home-kunjungan.webp');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
 .card.bg-buku {
-  background: url('../assets/img/bg-home-cari-buku.png') no-repeat center center;
+  background: url('../assets/img/bg-home-cari-buku.webp') no-repeat center center;
   background-size: cover;
 }
 

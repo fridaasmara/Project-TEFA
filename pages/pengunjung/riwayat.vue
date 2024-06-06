@@ -16,11 +16,11 @@
         <p class="text-muted">Menampilkan : {{ pengunjungFiltered.length }} dari {{ jmlPengunjung }} pengunjung</p>
       </div>
       <div class="col text-end">
-        <nuxt-link to="/">
-          <button class="btn btn-primary first"><i class="bi bi-house-door-fill"></i></button>
+        <nuxt-link to="/" class="btn btn-primary first">
+          <i class="bi bi-house-door-fill"></i>
         </nuxt-link>
-        <nuxt-link to="../buku/caribuku">
-          <button class="btn btn-primary">Cari buku</button>
+        <nuxt-link to="../buku/caribuku" class="btn btn-primary">
+          Cari buku
         </nuxt-link>
       </div>
     </div>

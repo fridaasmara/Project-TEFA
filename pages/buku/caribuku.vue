@@ -25,12 +25,12 @@
         <p class="mt-3 text-muted p-3">Menampilkan : {{ bookFiltered.length }} dari {{ jmlBuku }} buku</p>
       </div>
       <div class="col text-end">
-        <nuxt-link to="/">
-          <button class="btn btn-primary first"><i class="bi bi-house-door-fill"></i></button>
+        <nuxt-link to="/" class="btn btn-primary first">
+          <i class="bi bi-house-door-fill"></i>
         </nuxt-link>
 
-        <nuxt-link to="../pengunjung/tambah">
-          <button class="btn btn-primary">Kunjungan</button>
+        <nuxt-link to="../pengunjung/tambah" class="btn btn-primary">
+          Kunjungan
         </nuxt-link>
       </div>
     </div>
